@@ -1,4 +1,11 @@
- language: node_js
- node_js: node
- services:
-     - mongodb
+language: node_js
+node_js: node
+services:
+- mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: cqWhdn3wxpiIoP/5O0QEjCSMItuRvrpqASh23w+ogLcWrsUezJFvMbWAsgdJ+aAao9hcom9q0ScYDLw4TrwJ7kdO2RspNTOL7Oq/NAez2KSgzo+iFIuDcMfyc7ngcHgMSH+y4GRf1DYMTwswWfEaTQBwzTe1FWb6/ontg/adCylvUgsCH5uHShI7FGXXbbxUfq9C0Vt5oLDMwJmcecMVS2GxcT19+ITO48B8Wyw/pf0D6x3AssYFyVGrLu37ccN7sSCWyyjp7rfk4vVRMcUpENgOBXvmqh1uW+cOvRp64fexEoyaALpL78yZrm7ISY4UFAgnnAKnmOqUrcCssinJ70bhZ5zMR2cdFrrpg8F3z78mZCDYi1DHMvbOIj+hXAykATVghNf5/B2Yyf+HhqNAHC+488sSccvjdjBlsZzQ+1RnKIOJhnOuFY6h7Sj+5vPTD/WMto1lBhxIUb7BCShDUCMCaWEBpDRRmN/xito6C+UHwyStPT7iXgO9W4lcClfWq5QPDfXw5T24iaZNpTXXCvP7TAwdYgPvB/HpLnsbylBfWgO9OijIwGzGjEzYr/Ens0YdpwG8lKQCAzhs7Huv8/QEKnwdkJ2LuyAzOyFNnwvP9KUuqOWQCvTUgnP9RCPalLHaMg2bgru7fwjANVlnmJPNw6b7VPSpaOie7kCZAUQ=
+  app: hidden-ridge-40289
+  on:
+    repo: jtontiwith/long-game-api

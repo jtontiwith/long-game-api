@@ -11,6 +11,7 @@ const { PORT, DATABASE_URL } = require('./config');
 const { outcomesModel } = require('./models');
 //const PORT = process.env.PORT || 3000;
 
+console.log(DATABASE_URL);
 
 const jsonParser = bodyParser.json();
 const app = express();

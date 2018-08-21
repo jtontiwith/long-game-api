@@ -3,7 +3,8 @@ exports.DATABASE_URL = process.env.DATABASE_URL || global.DATABASE_URL || "mongo
 exports.TEST_DATABASE_URL =
   process.env.TEST_DATABASE_URL || "mongodb://localhost/longGameTestDB";
 exports.PORT = process.env.PORT || 8080;
-
+exports.JWT_SECRET = process.env.JWT_SECRET;
+exports.JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
 
 
 //mongodb://lgAdmin:LgadminlG1234@ds141621.mlab.com:41621/long-game-db

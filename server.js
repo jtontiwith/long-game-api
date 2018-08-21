@@ -1,15 +1,24 @@
+'use strict';
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-//const morgan = require('morgan');
+const morgan = require('morgan');
+const passport = require('passport');
+
 //const cors = require('cors');
 //const {CLIENT_ORIGIN} = require('./config');
+
+const { router: usersRouter } = require('./users');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
 mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require('./config');
 const { outcomesModel } = require('./models');
 //const PORT = process.env.PORT || 3000;
+
+
 
 console.log(DATABASE_URL);
 
@@ -19,6 +28,8 @@ app.use(express.static('public'));
 //app.use(morgan('common'));
 app.use(jsonParser);
 
+// Logging
+app.use(morgan('common'));
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -27,11 +38,17 @@ app.use(function (req, res, next) {
   next();
 });
 
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+app.use('/users/', usersRouter);
+app.use('/auth/', authRouter);
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
 app.get('/api/*', (req, res) => {
   res.json({ok: true});
 });
-
 
 app.get('/outcomes', jsonParser, (req, res) => {
   outcomesModel

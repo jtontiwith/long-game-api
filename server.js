@@ -1,10 +1,13 @@
 'use strict';
 require('dotenv').config();
+const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const passport = require('passport');
+
+
 
 //const cors = require('cors');
 //const {CLIENT_ORIGIN} = require('./config');
@@ -27,16 +30,10 @@ const app = express();
 app.use(express.static('public'));
 //app.use(morgan('common'));
 app.use(jsonParser);
+app.use(cors());
 
 // Logging
 app.use(morgan('common'));
-
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
-  next();
-});
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
@@ -50,9 +47,9 @@ app.get('/api/*', (req, res) => {
   res.json({ok: true});
 });
 
-app.get('/outcomes', jsonParser, (req, res) => {
+app.get('/outcomes/:userId', jsonParser, (req, res) => {
   outcomesModel
-    .find({})
+    .find({ user_id: req.params.userId })
     .then(outcomesModels => {
       res.json({
         outcomesModels: outcomesModels.map(outcomesModel => outcomesModel.serialize())

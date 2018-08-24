@@ -115,6 +115,8 @@ router.post('/', jsonParser, (req, res) => {
       return User.create({
         email,
         password: hash,
+        startDate: new Date(new Date().setDate(new Date().getDate() + 0)),
+        endDate: new Date(new Date().setDate(new Date().getDate() + 1825)) 
       });
     })
     .then(user => {

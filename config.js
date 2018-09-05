@@ -6,7 +6,4 @@ exports.JWT_SECRET = process.env.JWT_SECRET;
 exports.JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
 
 
-//mongodb://lgAdmin:LgadminlG1234@ds141621.mlab.com:41621/long-game-db
-
-//mongo ds141621.mlab.com:41621/long-game-db -u lgAdmin -p LgadminlG1234
 

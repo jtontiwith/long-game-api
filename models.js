@@ -8,9 +8,7 @@ const outcomesModelSchema = mongoose.Schema({
   whyText: { type: String },
   date: { type: Date },
   range: { type: Number, min: 1, max: 1826 },
-  user_id: { type: String, required: true },
-  editing: { type: Boolean, default: false },
-  showDetail: { type: Boolean, default: false } 
+  user_id: { type: String, required: true }
 });
 
 outcomesModelSchema.methods.serialize = function() {
@@ -20,9 +18,7 @@ outcomesModelSchema.methods.serialize = function() {
     whyText: this.whyText,
     date: this.date,
     range: this.range,
-    user_id: this.user_id,
-    editing: this.editing,
-    showDetail: this.showDetail 
+    user_id: this.user_id
   }
 }
 

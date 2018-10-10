@@ -7,11 +7,6 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const passport = require('passport');
 
-
-
-//const cors = require('cors');
-//const {CLIENT_ORIGIN} = require('./config');
-
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 
@@ -136,6 +131,7 @@ let server;
 
 function runServer(DATABASE_URL, port = PORT) {
   return new Promise((resolve, reject) => {
+    console.log(DATABASE_URL);
     mongoose.connect(
       DATABASE_URL,
       err => {
